@@ -609,8 +609,104 @@ h2 {
   transform: translateY(-50%);
 }
 
+/* Music player */
+.music-player {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 1rem 0.55rem 0.55rem;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 158, 181, 0.35);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(201, 120, 148, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.music-player:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(201, 120, 148, 0.28);
+}
+
+.music-player.is-playing {
+  border-color: rgba(255, 138, 122, 0.55);
+  animation: musicGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes musicGlow {
+  0%, 100% { box-shadow: 0 10px 30px rgba(255, 138, 122, 0.2); }
+  50% { box-shadow: 0 10px 36px rgba(255, 158, 181, 0.45); }
+}
+
+.music-toggle {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--gerbera-pink), var(--gerbera-coral));
+  color: var(--white);
+  font-size: 1.1rem;
+  box-shadow: 0 4px 14px rgba(255, 138, 122, 0.35);
+  transition: transform 0.2s ease;
+}
+
+.music-toggle:hover {
+  transform: scale(1.06);
+}
+
+.music-icon--pause {
+  display: none;
+  font-size: 0.75rem;
+  letter-spacing: -2px;
+}
+
+.music-player.is-playing .music-icon--play {
+  display: none;
+}
+
+.music-player.is-playing .music-icon--pause {
+  display: block;
+}
+
+.music-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding-right: 0.25rem;
+}
+
+.music-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+  font-weight: 600;
+}
+
+.music-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text);
+  white-space: nowrap;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
+  .music-player {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    justify-content: center;
+  }
+
   .gallery-item,
   .gallery-item.wide {
     grid-column: span 12;

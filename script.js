@@ -1,3 +1,34 @@
+// Background music
+const musicPlayer = document.getElementById("music-player");
+const bgMusic = document.getElementById("bg-music");
+const musicToggle = document.getElementById("music-toggle");
+
+bgMusic.volume = 0.45;
+
+function setPlayingState(isPlaying) {
+  musicPlayer.classList.toggle("is-playing", isPlaying);
+  musicToggle.setAttribute(
+    "aria-label",
+    isPlaying ? "Pause background music" : "Play background music"
+  );
+}
+
+async function toggleMusic() {
+  try {
+    if (bgMusic.paused) {
+      await bgMusic.play();
+      setPlayingState(true);
+    } else {
+      bgMusic.pause();
+      setPlayingState(false);
+    }
+  } catch {
+    setPlayingState(false);
+  }
+}
+
+musicToggle.addEventListener("click", toggleMusic);
+
 // Gerbera flower garden
 const gerberaGarden = document.querySelector(".gerbera-garden");
 const gerberaColors = [
